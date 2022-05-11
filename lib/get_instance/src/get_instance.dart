@@ -365,7 +365,8 @@ class GetInstance {
   ///
   /// - [force] Will delete the Instances even if marked as `permanent`.
   void deleteAll({bool force = false}) {
-    _singl.forEach((key, value) {
+    final List<String> keys = _singl.keys.toList();
+    keys.forEach((key, value) {
       delete(key: key, force: force);
     });
   }
