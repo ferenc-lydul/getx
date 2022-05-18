@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/widgets.dart';
 import '../../../get_core/get_core.dart';
 import '../../get_navigation.dart';
-import 'snack.dart';
 
 class SnackRoute<T> extends OverlayRoute<T> {
   late Animation<double> _filterBlurAnimation;

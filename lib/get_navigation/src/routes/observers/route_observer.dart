@@ -5,8 +5,6 @@ import '../../../../instance_manager.dart';
 import '../../../get_navigation.dart';
 import '../../dialog/dialog_route.dart';
 import '../../router_report.dart';
-import '../../snackbar/snack_route.dart';
-import '../default_route.dart';
 
 class Routing {
   String current;

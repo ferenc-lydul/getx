@@ -365,10 +365,10 @@ class GetInstance {
   ///
   /// - [force] Will delete the Instances even if marked as `permanent`.
   void deleteAll({bool force = false}) {
-    final List<String> keys = _singl.keys.toList();
-    keys.forEach((key) {
+    final keys = _singl.keys.toList();
+    for (var key in keys) {
       delete(key: key, force: force);
-    });
+    }
   }
 
   void reloadAll({bool force = false}) {

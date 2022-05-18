@@ -23,6 +23,7 @@ class GetModalBottomSheetRoute<T> extends PopupRoute<T> {
   }) : super(settings: settings) {
     RouterReportManager.reportCurrentRoute(this);
   }
+
   final bool? isPersistent;
   final WidgetBuilder? builder;
   final ThemeData? theme;
@@ -34,9 +35,11 @@ class GetModalBottomSheetRoute<T> extends PopupRoute<T> {
   final Color? modalBarrierColor;
   final bool isDismissible;
   final bool enableDrag;
+
   // final String name;
   final Duration enterBottomSheetDuration;
   final Duration exitBottomSheetDuration;
+
   // remove safearea from top
   final bool removeTop;
 
@@ -63,33 +66,26 @@ class GetModalBottomSheetRoute<T> extends PopupRoute<T> {
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
-    _animationController =
-        BottomSheet.createAnimationController(navigator!.overlay!);
+    _animationController = BottomSheet.createAnimationController(navigator!.overlay!);
     _animationController!.duration = enterBottomSheetDuration;
     _animationController!.reverseDuration = exitBottomSheetDuration;
     return _animationController!;
   }
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
-    final sheetTheme =
-        theme?.bottomSheetTheme ?? Theme.of(context).bottomSheetTheme;
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+    final sheetTheme = theme?.bottomSheetTheme ?? Theme.of(context).bottomSheetTheme;
     // By definition, the bottom sheet is aligned to the bottom of the page
     // and isn't exposed to the top padding of the MediaQuery.
     Widget bottomSheet = MediaQuery.removePadding(
       context: context,
       removeTop: removeTop,
       child: Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: _GetModalBottomSheet<T>(
           route: this,
-          backgroundColor: backgroundColor ??
-              sheetTheme.modalBackgroundColor ??
-              sheetTheme.backgroundColor,
-          elevation:
-              elevation ?? sheetTheme.modalElevation ?? sheetTheme.elevation,
+          backgroundColor: backgroundColor ?? sheetTheme.modalBackgroundColor ?? sheetTheme.backgroundColor,
+          elevation: elevation ?? sheetTheme.modalElevation ?? sheetTheme.elevation,
           shape: shape,
           clipBehavior: clipBehavior,
           isScrollControlled: isScrollControlled,
@@ -129,8 +125,7 @@ class _GetModalBottomSheet<T> extends StatefulWidget {
 
 class _GetModalBottomSheetState<T> extends State<_GetModalBottomSheet<T>> {
   String _getRouteLabel(MaterialLocalizations localizations) {
-    if ((Theme.of(context).platform == TargetPlatform.android) ||
-        (Theme.of(context).platform == TargetPlatform.fuchsia)) {
+    if ((Theme.of(context).platform == TargetPlatform.android) || (Theme.of(context).platform == TargetPlatform.fuchsia)) {
       return localizations.dialogLabel;
     } else {
       return '';
@@ -150,9 +145,7 @@ class _GetModalBottomSheetState<T> extends State<_GetModalBottomSheet<T>> {
       builder: (context, child) {
         // Disable the initial animation when accessible navigation is on so
         // that the semantics are added to the tree at the correct time.
-        final animationValue = mediaQuery.accessibleNavigation
-            ? 1.0
-            : widget.route!.animation!.value;
+        final animationValue = mediaQuery.accessibleNavigation ? 1.0 : widget.route!.animation!.value;
         return Semantics(
           scopesRoute: true,
           namesRoute: true,
@@ -160,8 +153,7 @@ class _GetModalBottomSheetState<T> extends State<_GetModalBottomSheet<T>> {
           explicitChildNodes: true,
           child: ClipRect(
             child: CustomSingleChildLayout(
-                delegate: _GetModalBottomSheetLayout(
-                    animationValue, widget.isScrollControlled),
+                delegate: _GetModalBottomSheetLayout(animationValue, widget.isScrollControlled),
                 child: widget.isPersistent == false
                     ? BottomSheet(
                         animationController: widget.route!._animationController,
@@ -179,8 +171,7 @@ class _GetModalBottomSheetState<T> extends State<_GetModalBottomSheet<T>> {
                       )
                     : Scaffold(
                         bottomSheet: BottomSheet(
-                          animationController:
-                              widget.route!._animationController,
+                          animationController: widget.route!._animationController,
                           onClosing: () {
                             // if (widget.route.isCurrent) {
                             //   Navigator.pop(context);
@@ -224,16 +215,13 @@ class _GetPerModalBottomSheet<T> extends StatefulWidget {
 
   @override
   // ignore: lines_longer_than_80_chars
-  _GetPerModalBottomSheetState<T> createState() =>
-      _GetPerModalBottomSheetState<T>();
+  _GetPerModalBottomSheetState<T> createState() => _GetPerModalBottomSheetState<T>();
 }
 
 // ignore: lines_longer_than_80_chars
-class _GetPerModalBottomSheetState<T>
-    extends State<_GetPerModalBottomSheet<T>> {
+class _GetPerModalBottomSheetState<T> extends State<_GetPerModalBottomSheet<T>> {
   String _getRouteLabel(MaterialLocalizations localizations) {
-    if ((Theme.of(context).platform == TargetPlatform.android) ||
-        (Theme.of(context).platform == TargetPlatform.fuchsia)) {
+    if ((Theme.of(context).platform == TargetPlatform.android) || (Theme.of(context).platform == TargetPlatform.fuchsia)) {
       return localizations.dialogLabel;
     } else {
       return '';
@@ -253,9 +241,7 @@ class _GetPerModalBottomSheetState<T>
       builder: (context, child) {
         // Disable the initial animation when accessible navigation is on so
         // that the semantics are added to the tree at the correct time.
-        final animationValue = mediaQuery.accessibleNavigation
-            ? 1.0
-            : widget.route!.animation!.value;
+        final animationValue = mediaQuery.accessibleNavigation ? 1.0 : widget.route!.animation!.value;
         return Semantics(
           scopesRoute: true,
           namesRoute: true,
@@ -263,8 +249,7 @@ class _GetPerModalBottomSheetState<T>
           explicitChildNodes: true,
           child: ClipRect(
             child: CustomSingleChildLayout(
-                delegate: _GetModalBottomSheetLayout(
-                    animationValue, widget.isScrollControlled),
+                delegate: _GetModalBottomSheetLayout(animationValue, widget.isScrollControlled),
                 child: widget.isPersistent == false
                     ? BottomSheet(
                         animationController: widget.route!._animationController,
@@ -282,8 +267,7 @@ class _GetPerModalBottomSheetState<T>
                       )
                     : Scaffold(
                         bottomSheet: BottomSheet(
-                          animationController:
-                              widget.route!._animationController,
+                          animationController: widget.route!._animationController,
                           onClosing: () {
                             // if (widget.route.isCurrent) {
                             //   Navigator.pop(context);
@@ -316,9 +300,7 @@ class _GetModalBottomSheetLayout extends SingleChildLayoutDelegate {
       minWidth: constraints.maxWidth,
       maxWidth: constraints.maxWidth,
       minHeight: 0.0,
-      maxHeight: isScrollControlled
-          ? constraints.maxHeight
-          : constraints.maxHeight * 9.0 / 16.0,
+      maxHeight: isScrollControlled ? constraints.maxHeight : constraints.maxHeight * 9.0 / 16.0,
     );
   }
 

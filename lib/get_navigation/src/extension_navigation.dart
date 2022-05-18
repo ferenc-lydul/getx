@@ -9,8 +9,6 @@ import '../../get_utils/get_utils.dart';
 import '../get_navigation.dart';
 import 'dialog/dialog_route.dart';
 import 'root/parse_route.dart';
-import 'root/root_controller.dart';
-import 'routes/transitions_type.dart';
 
 extension ExtensionSnackbar on GetInterface {
   void rawSnackbar({
@@ -92,7 +90,7 @@ extension ExtensionSnackbar on GetInterface {
     if (instantInit) {
       getBar.show();
     } else {
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         getBar.show();
       });
     }
@@ -198,7 +196,7 @@ extension ExtensionSnackbar on GetInterface {
       showSnackbar<T>(getBar);
     } else {
       routing.isSnackbar = true;
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         showSnackbar<T>(getBar);
       });
     }
@@ -1047,7 +1045,7 @@ you can only use widgets and widget functions here''';
   /// Your entire application will be rebuilt, and touch events will not
   /// work until the end of rendering.
   void forceAppUpdate() {
-    engine!.performReassemble();
+    engine.performReassemble();
   }
 
   void appUpdate() => _getxController.update();
@@ -1147,10 +1145,7 @@ you can only use widgets and widget functions here''';
   }
 
   ///The current [WidgetsBinding]
-  WidgetsBinding? get engine {
-    if (WidgetsBinding.instance == null) {
-      WidgetsFlutterBinding();
-    }
+  WidgetsBinding get engine {
     return WidgetsBinding.instance;
   }
 

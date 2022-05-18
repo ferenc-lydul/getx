@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../get_core/get_core.dart';
@@ -7,7 +5,6 @@ import '../../../get_instance/get_instance.dart';
 import '../../../get_state_manager/get_state_manager.dart';
 import '../../../get_utils/get_utils.dart';
 import '../../get_navigation.dart';
-import 'root_controller.dart';
 
 class GetMaterialApp extends StatelessWidget {
   const GetMaterialApp({
@@ -232,7 +229,7 @@ class GetMaterialApp extends StatelessWidget {
         onDispose?.call();
       },
       initState: (i) {
-        Get.engine!.addPostFrameCallback((timeStamp) {
+        Get.engine.addPostFrameCallback((timeStamp) {
           onReady?.call();
         });
         if (locale != null) Get.locale = locale;

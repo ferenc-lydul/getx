@@ -265,7 +265,7 @@ Set either a message or messageText""");
   final Completer<Size> _boxHeightCompleter = Completer<Size>();
 
   void _configureLeftBarFuture() {
-    SchedulerBinding.instance!.addPostFrameCallback(
+    SchedulerBinding.instance.addPostFrameCallback(
       (_) {
         final keyContext = backgroundBoxKey.currentContext;
 

@@ -45,7 +45,7 @@ class RouterReportManager<T> {
 
   static void reportRouteDispose(Route disposed) {
     if (Get.smartManagement != SmartManagement.onlyBuilder) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         ///TODO: Is necessary this comparator?
         if (_current != disposed) {
           _removeDependencyByRoute(disposed);
