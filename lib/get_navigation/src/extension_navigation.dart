@@ -376,7 +376,7 @@ extension ExtensionDialog on GetInterface {
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             shape: RoundedRectangleBorder(
                 side: BorderSide(
-                    color: buttonColor ?? theme.accentColor,
+                    color: buttonColor ?? Colors.black,
                     width: 2,
                     style: BorderStyle.solid),
                 borderRadius: BorderRadius.circular(100)),
@@ -387,7 +387,7 @@ extension ExtensionDialog on GetInterface {
           },
           child: Text(
             textCancel ?? "Cancel",
-            style: TextStyle(color: cancelTextColor ?? theme.accentColor),
+            style: TextStyle(color: cancelTextColor),
           ),
         ));
       }
@@ -399,7 +399,7 @@ extension ExtensionDialog on GetInterface {
         actions.add(TextButton(
             style: TextButton.styleFrom(
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              backgroundColor: buttonColor ?? theme.accentColor,
+              backgroundColor: buttonColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100)),
             ),
