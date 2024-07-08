@@ -63,13 +63,8 @@ class HomeController extends SuperController<CasesModel> {
   }
 
   @override
-  void onDetached() {
-    print('onDetached called');
-  }
-
-  @override
-  void onInactive() {
-    print('onInative called');
+  void onResumed() {
+    print('onResumed called');
   }
 
   @override
@@ -78,7 +73,17 @@ class HomeController extends SuperController<CasesModel> {
   }
 
   @override
-  void onResumed() {
-    print('onResumed called');
+  void onInactive() {
+    print('onInative called');
+  }
+
+  @override
+  void onDetached() {
+    print('onDetached called');
+  }
+
+  @override
+  void onHidden() {
+    print('onHidden called');
   }
 }
