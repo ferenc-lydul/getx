@@ -140,6 +140,7 @@ extension ExtensionSnackbar on GetInterface {
     SnackbarStatusCallback? snackbarStatus,
     Color? overlayColor,
     Form? userInputForm,
+    VoidCallback? onDismissed,
   }) async {
     final getBar = GetBar(
         snackbarStatus: snackbarStatus,
@@ -193,11 +194,11 @@ extension ExtensionSnackbar on GetInterface {
         userInputForm: userInputForm);
 
     if (instantInit) {
-      showSnackbar<T>(getBar);
+      showSnackbar<T>(getBar)?.then((_) => onDismissed?.call());
     } else {
       routing.isSnackbar = true;
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        showSnackbar<T>(getBar);
+        showSnackbar<T>(getBar)?.then((_) => onDismissed?.call());
       });
     }
   }
